@@ -65,8 +65,8 @@ def find_rectangles_in_mask(mask, scale_factor=1):
 
 # Example usage
 # Paths to the PDF files you want to compare
-pdf_path_v1 = "pdffiles/source/amelco-invoice-March-2024.pdf"
-pdf_path_v2 = "pdffiles/target/amelco-invoice-March-2024-v2.pdf"
+pdf_path1 = "pdffiles/source/pdf_uat_20240330213915.pdf"
+pdf_path2 = "pdffiles/target/pdf_prod_20240330213915.pdf"
 output_pdf = 'output_highlighted_differences.pdf'
 page_num = 0  # Example for the first page
 
