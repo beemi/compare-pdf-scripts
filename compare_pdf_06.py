@@ -73,9 +73,9 @@ def compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path):
 
 # Example usage
 # Paths to the PDF files you want to compare
-pdf_path1 = "pdffiles/source/sample_pdf_1.pdf"
-pdf_path2 = "pdffiles/target/sample_pdf_2.pdf"
+pdf_path1 = "pdffiles/source/pdf_uat.pdf"
+pdf_path2 = "pdffiles/target/pdf_prod.pdf"
 
-output_pdf_path = 'output_highlighted_difference_06_03.pdf'
+output_pdf_path = 'output_highlighted_difference_06_04.pdf'
 
 compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path)
