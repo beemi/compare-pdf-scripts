@@ -3,3 +3,4 @@ numpy
 difflib
 scikit-image
 opencv-python-headless
+FPDF
