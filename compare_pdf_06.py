@@ -55,6 +55,11 @@ def compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path):
     """Compare PDFs, highlight differences on PDF2, and combine PDF1 and PDF2 pages side by side."""
     doc1 = fitz.open(pdf_path1)
     doc2 = fitz.open(pdf_path2)
+
+    # Validate number of pages in both PDFs before proceeding, else raise an error
+    if len(doc1) != len(doc2):
+        raise ValueError("Number of pages in the two PDFs do not match.")
+
     output_pdf = fitz.open()
 
     for page_num in range(len(doc1)):
