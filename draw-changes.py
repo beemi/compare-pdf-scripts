@@ -1,7 +1,7 @@
 import fitz  # PyMuPDF
 import numpy as np
-from skimage.measure import label, regionprops
 from skimage.color import rgb2gray
+from skimage.measure import label, regionprops
 from skimage.morphology import dilation, square
 
 

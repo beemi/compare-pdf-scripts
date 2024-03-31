@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
-import fitz  # PyMuPDF
 import cv2
+import fitz  # PyMuPDF
 import numpy as np
 
 

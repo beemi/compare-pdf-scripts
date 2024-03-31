@@ -8,7 +8,7 @@ from fpdf import FPDF
 # Create instance of FPDF class for PDF 1 (UAT)
 pdf_uat = FPDF()
 pdf_uat.add_page()
-pdf_uat.set_font("Times", size=12) # Change font to Times
+pdf_uat.set_font("Times", size=12)  # Change font to Times
 pdf_uat.cell(0, 10, "This PDF file is designated for UAT.", ln=True)
 pdf_uat.set_font("Arial", size=12, style='B')
 pdf_uat.cell(0, 10, "The content here is mostly similar to its counterpart, with some differences.", ln=True)
@@ -29,12 +29,12 @@ pdf_uat.output(pdf_uat_path)
 # Create instance of FPDF class for PDF 2 (Prod)
 pdf_prod = FPDF()
 pdf_prod.add_page()
-pdf_prod.set_font("Times", size=12) # Change font to Times
+pdf_prod.set_font("Times", size=12)  # Change font to Times
 pdf_prod.cell(0, 10, "This PDF file is designated for Production.", ln=True)
 pdf_prod.set_font("Times", size=12, style='B')
 pdf_prod.cell(0, 10, "Most content is identical to its UAT version, with minor variances.", ln=True)
-pdf_prod.set_font("Times", size=12, style='BI') # Slight change in style for user input text
-pdf_prod.cell(0, 10, "Firstname: Jane Smith", ln=True) # Change in user input text
+pdf_prod.set_font("Times", size=12, style='BI')  # Slight change in style for user input text
+pdf_prod.cell(0, 10, "Firstname: Jane Smith", ln=True)  # Change in user input text
 # Add a watermark for Prod
 pdf_prod.set_font("Times", style='B', size=50)
 pdf_prod.set_text_color(200, 200, 200)

@@ -1,7 +1,7 @@
-
-import fitz  # PyMuPDF
 import cv2
+import fitz  # PyMuPDF
 import numpy as np
+
 
 # This script works for, script06
 
@@ -25,7 +25,7 @@ def find_and_draw_differences(img1, img2):
     _, thresh = cv2.threshold(diff, 30, 255, cv2.THRESH_BINARY)
 
     # Use dilation to merge nearby contours, making it easier to detect complete changes
-    kernel = np.ones((5,5), np.uint8)  # Kernel size affects merging of close changes
+    kernel = np.ones((5, 5), np.uint8)  # Kernel size affects merging of close changes
     dilated = cv2.dilate(thresh, kernel, iterations=2)  # Fewer iterations to avoid over-merging
 
     contours, _ = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -33,10 +33,9 @@ def find_and_draw_differences(img1, img2):
     # Draw a rectangle around each distinct contour
     for contour in contours:
         x, y, w, h = cv2.boundingRect(contour)
-        cv2.rectangle(img2, (x, y), (x+w, y+h), (0, 0, 255), 2)
+        cv2.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
     return img2
-
 
 
 def combine_images_horizontally(img1, img2):

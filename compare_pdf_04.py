@@ -1,5 +1,5 @@
-import fitz  # PyMuPDF
 import cv2
+import fitz  # PyMuPDF
 import numpy as np
 
 
@@ -30,6 +30,7 @@ def find_and_draw_differences(img1, img2):
         cv2.polylines(img2, [approx], isClosed=True, color=(0, 0, 255), thickness=2)
 
     return img2
+
 
 def combine_images_horizontally(img1, img2):
     """Combine two images horizontally with the same height."""

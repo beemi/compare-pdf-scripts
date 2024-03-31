@@ -1,10 +1,10 @@
 import datetime
-
-import fitz  # PyMuPDF
-import cv2
-import numpy as np
-import sys
 import os
+import sys
+
+import cv2
+import fitz  # PyMuPDF
+import numpy as np
 
 
 def pdf_page_to_image(pdf_path, page_number, resolution=300):

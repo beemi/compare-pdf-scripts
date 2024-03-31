@@ -1,5 +1,6 @@
 import fitz  # PyMuPDF
 
+
 def extract_font_details_with_position(pdf_path):
     """
     Extract font name, size, and position from each text span in the PDF.
@@ -22,6 +23,7 @@ def extract_font_details_with_position(pdf_path):
         font_details.append(page_fonts)
     doc.close()
     return font_details
+
 
 def highlight_font_changes(pdf_path, fonts1, fonts2):
     """

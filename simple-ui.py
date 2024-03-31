@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+
 def simple_debugging_gui():
     layout = [
         [sg.Text("PDF 1:"), sg.Input(), sg.FileBrowse(key="PDF1")],
@@ -19,6 +20,7 @@ def simple_debugging_gui():
             sg.popup("Path Info", f"PDF 1: {values['PDF1']}\nPDF 2: {values['PDF2']}\nOutput: {values['Output']}")
 
     window.close()
+
 
 # Call the simplified debugging GUI function
 simple_debugging_gui()

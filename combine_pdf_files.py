@@ -57,7 +57,6 @@ def combine_pdfs_side_by_side(pdf_path1, pdf_path2, output_pdf_path):
     output_pdf.close()
 
 
-
 # Example usage
 pdf_path1 = "pdffiles/source/sample_pdf_1.pdf"
 pdf_path2 = "pdffiles/target/sample_pdf_2.pdf"

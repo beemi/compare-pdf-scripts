@@ -1,14 +1,15 @@
+import datetime
 import os
 
 import cv2
 import fitz  # PyMuPDF
 import numpy as np
 from flask import Flask, render_template
+from flask import send_file
 from flask_wtf import FlaskForm
 from werkzeug.utils import secure_filename
 from wtforms import FileField, SubmitField
 from wtforms.validators import DataRequired
-from flask import send_file
 
 from compare_pdf_09 import compare_pdfs_highlight_and_combine
 
@@ -18,8 +19,8 @@ app.config['UPLOAD_FOLDER'] = 'uploader-folder'
 
 
 class UploadForm(FlaskForm):
-    pdf1 = FileField('Upload First PDF', validators=[DataRequired()])
-    pdf2 = FileField('Upload Second PDF', validators=[DataRequired()])
+    pdf1 = FileField('Upload First PDF', validators=[DataRequired()], description="Upload the first PDF file.")
+    pdf2 = FileField('Upload Second PDF', validators=[DataRequired()], description="Upload the second PDF file.")
     submit = SubmitField('Compare')
 
 
@@ -89,7 +90,8 @@ def upload():
         form.pdf2.data.save(pdf2_path)
         print("PDFs saved successfully.")
 
-        output_pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], 'output.pdf')
+        pdf_time_stamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        output_pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], 'output_' + pdf_time_stamp + '.pdf')
 
         try:
             compare_pdfs_highlight_and_combine(pdf1_path, pdf2_path, output_pdf_path)
