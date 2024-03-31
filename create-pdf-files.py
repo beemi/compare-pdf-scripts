@@ -14,6 +14,9 @@ pdf_uat.set_font("Arial", size=12, style='B')
 pdf_uat.cell(0, 10, "The content here is mostly similar to its counterpart, with some differences.", ln=True)
 pdf_uat.set_font("Arial", size=12)
 pdf_uat.cell(0, 10, "Firstname: John Doe", ln=True)
+# add last name input for user to fill in
+pdf_uat.set_font("Arial", size=12)
+pdf_uat.cell(0, 10, "Lastname: ________", ln=True)
 # Add a watermark for UAT
 pdf_uat.set_font("Arial", style='I', size=50)
 pdf_uat.set_text_color(220, 220, 220)
@@ -35,6 +38,9 @@ pdf_prod.set_font("Times", size=12, style='B')
 pdf_prod.cell(0, 10, "Most content is identical to its UAT version, with minor variances.", ln=True)
 pdf_prod.set_font("Times", size=12, style='BI')  # Slight change in style for user input text
 pdf_prod.cell(0, 10, "Firstname: Jane Smith", ln=True)  # Change in user input text
+# add last name input for user to fill in
+pdf_prod.set_font("Arial", size=12)
+pdf_prod.cell(0, 10, "Lastname: ________", ln=True)
 # Add a watermark for Prod
 pdf_prod.set_font("Times", style='B', size=50)
 pdf_prod.set_text_color(200, 200, 200)
