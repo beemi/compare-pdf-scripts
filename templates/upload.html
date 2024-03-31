@@ -103,6 +103,7 @@
     </p>
     <p id="dateTime"><span id="clockIcon">🕒</span></p>
     <p>{{ form.submit(id='submit') }}</p>
+    <button onclick="goBack()">Go Back</button>
 </form>
 
 <script>
@@ -145,6 +146,10 @@
 
     // Update the date and time every second
     setInterval(updateDateTime, 1000);
+
+    function goBack() {
+        window.history.back();
+    }
 </script>
 <footer style="text-align: center; padding: 20px 0; background-color: #f0f0f0; margin-top: 20px;">
     <p>&copy; 2023 PDF Compare. All rights reserved.</p>

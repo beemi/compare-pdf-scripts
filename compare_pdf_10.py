@@ -100,7 +100,25 @@ def upload():
         except Exception as e:
             return f'Error comparing PDFs: {str(e)}'
 
-        return send_file(output_pdf_path, as_attachment=True)
+        # Calculate the relative path to the PDF file from the static folder
+        static_pdf_path = os.path.join('static', 'output_' + pdf_time_stamp + '.pdf')
+        shutil.move(output_pdf_path, static_pdf_path)
+
+        # Calculate the relative path to the PDF file from the static folder
+        pdf_relative_path = os.path.relpath(static_pdf_path, 'static')
+
+        # Print the absolute and relative paths to the PDF file
+        print(f'Absolute path: {output_pdf_path}')
+        print(f'Relative path: {pdf_relative_path}')
+
+        # Check if the file exists at the absolute path
+        if os.path.exists(output_pdf_path):
+            print('File exists at the absolute path.')
+        else:
+            print('File does not exist at the absolute path.')
+
+        # Render the output.html template and pass the path to the PDF file
+        return render_template('output.html', pdf_path=pdf_relative_path)
 
     return render_template('upload.html', form=form)
 
