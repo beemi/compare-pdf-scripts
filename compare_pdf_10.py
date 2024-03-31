@@ -1,10 +1,12 @@
 import datetime
 import os
 
+import shutil
+
 import cv2
 import fitz  # PyMuPDF
 import numpy as np
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask import send_file
 from flask_wtf import FlaskForm
 from werkzeug.utils import secure_filename
@@ -101,6 +103,21 @@ def upload():
         return send_file(output_pdf_path, as_attachment=True)
 
     return render_template('upload.html', form=form)
+
+
+@app.route('/clear', methods=['POST'])
+def clear():
+    folder = app.config['UPLOAD_FOLDER']
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
+    return redirect(url_for("upload"))
 
 
 if __name__ == '__main__':

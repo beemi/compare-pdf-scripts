@@ -44,16 +44,37 @@
         form input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
         #pdf1Name, #pdf2Name {
-        font-weight: bold;  /* Make the text bold */
-        color: #007BFF;  /* Change the text color */
-        background-color: #f0f0f0;  /* Add a background color */
-        padding: 10px;  /* Add some padding */
-        margin-bottom: 20px;  /* Add some bottom margin */
-    }
+            font-weight: bold; /* Make the text bold */
+            color: #007BFF; /* Change the text color */
+            background-color: #f0f0f0; /* Add a background color */
+            padding: 10px; /* Add some padding */
+            margin-bottom: 20px; /* Add some bottom margin */
+        }
+
+        /* Add new styles for the clear button */
+        .clear-button {
+            position: absolute; /* Position the button absolutely */
+            top: 20px; /* Position it 20px from the top of the page */
+            right: 20px; /* Position it 20px from the right of the page */
+            background-color: red; /* Change the background color to red */
+            color: #fff; /* Change the text color to white */
+            padding: 10px 20px; /* Add some padding */
+            border: none; /* Remove the border */
+            cursor: pointer; /* Change the cursor to a pointer when hovering over the button */
+        }
+
+        .clear-button:hover {
+            background-color: darkred; /* Change the background color to dark red when hovering over the button */
+        }
     </style>
 </head>
 <body>
+<!-- Add the clear button at the top of the body -->
+    <form action="{{ url_for('clear') }}" method="POST" class="clear-button">
+        <input type="submit" value="Clear Uploads">
+    </form>
 <h1>Upload PDFs for Comparison</h1>
 <form enctype="multipart/form-data" method="POST">
     {{ form.hidden_tag() }}
@@ -74,37 +95,37 @@
 </form>
 
 <script>
-        // Get references to the file input fields, the submit button, and the new paragraph elements
-        const pdf1Input = document.getElementById('pdf1');
-        const pdf2Input = document.getElementById('pdf2');
-        const submitButton = document.getElementById('submit');
-        const pdf1Name = document.getElementById('pdf1Name');
-        const pdf2Name = document.getElementById('pdf2Name');
+    // Get references to the file input fields, the submit button, and the new paragraph elements
+    const pdf1Input = document.getElementById('pdf1');
+    const pdf2Input = document.getElementById('pdf2');
+    const submitButton = document.getElementById('submit');
+    const pdf1Name = document.getElementById('pdf1Name');
+    const pdf2Name = document.getElementById('pdf2Name');
 
-        // Disable the submit button by default
-        submitButton.disabled = true;
+    // Disable the submit button by default
+    submitButton.disabled = true;
 
-        // Function to check if both file input fields have a file selected
-        function checkFiles() {
-            submitButton.disabled = !(pdf1Input.files.length > 0 && pdf2Input.files.length > 0);
-        }
+    // Function to check if both file input fields have a file selected
+    function checkFiles() {
+        submitButton.disabled = !(pdf1Input.files.length > 0 && pdf2Input.files.length > 0);
+    }
 
-        // Function to update the text of the paragraph elements with the names of the selected files
-        function updateFileNames() {
-            pdf1Name.textContent = pdf1Input.files.length > 0 ? `Selected PDF1 file: ${pdf1Input.files[0].name}` : '';
-            pdf2Name.textContent = pdf2Input.files.length > 0 ? `Selected PDF2 file: ${pdf2Input.files[0].name}` : '';
-        }
+    // Function to update the text of the paragraph elements with the names of the selected files
+    function updateFileNames() {
+        pdf1Name.textContent = pdf1Input.files.length > 0 ? `Selected PDF1 file: ${pdf1Input.files[0].name}` : '';
+        pdf2Name.textContent = pdf2Input.files.length > 0 ? `Selected PDF2 file: ${pdf2Input.files[0].name}` : '';
+    }
 
-        // Add event listeners to the file input fields to call the checkFiles and updateFileNames functions whenever a file is selected
-        pdf1Input.addEventListener('change', function() {
-            checkFiles();
-            updateFileNames();
-        });
-        pdf2Input.addEventListener('change', function() {
-            checkFiles();
-            updateFileNames();
-        });
-    </script>
+    // Add event listeners to the file input fields to call the checkFiles and updateFileNames functions whenever a file is selected
+    pdf1Input.addEventListener('change', function () {
+        checkFiles();
+        updateFileNames();
+    });
+    pdf2Input.addEventListener('change', function () {
+        checkFiles();
+        updateFileNames();
+    });
+</script>
 <footer style="text-align: center; padding: 20px 0; background-color: #f0f0f0; margin-top: 20px;">
     <p>&copy; 2023 PDF Compare. All rights reserved.</p>
 </footer>
