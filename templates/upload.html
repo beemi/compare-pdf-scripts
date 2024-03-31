@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Compare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        form p {
+            margin-bottom: 20px;
+        }
+
+        form input[type="file"] {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload PDFs for Comparison</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.pdf1.label }}<br>
+            {{ form.pdf1(id='pdf1', required=True) }}  <!-- add required attribute here -->
+        </p>
+        <p>
+            {{ form.pdf2.label }}<br>
+            {{ form.pdf2(id='pdf2', required=True) }}  <!-- add required attribute here -->
+        </p>
+        <p>{{ form.submit(id='submit') }}</p>
+    </form>
+
+    <script>
+        // Get references to the file input fields and the submit button
+        const pdf1Input = document.getElementById('pdf1');
+        const pdf2Input = document.getElementById('pdf2');
+        const submitButton = document.getElementById('submit');
+
+        // Disable the submit button by default
+        submitButton.disabled = true;
+
+        // Function to check if both file input fields have a file selected
+        function checkFiles() {
+            submitButton.disabled = !(pdf1Input.files.length > 0 && pdf2Input.files.length > 0);
+        }
+
+        // Add event listeners to the file input fields to call the checkFiles function whenever a file is selected
+        pdf1Input.addEventListener('change', checkFiles);
+        pdf2Input.addEventListener('change', checkFiles);
+    </script>
+</body>
+</html>

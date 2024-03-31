@@ -1,6 +1,12 @@
 pymupdf
 numpy
-difflib
 scikit-image
 opencv-python-headless
 FPDF
+PySimpleGUI
+argparse
+pyinstaller
+flask
+flask-wtf
+wtforms
+Werkzeug
