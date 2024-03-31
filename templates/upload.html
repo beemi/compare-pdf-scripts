@@ -68,13 +68,23 @@
         .clear-button:hover {
             background-color: darkred; /* Change the background color to dark red when hovering over the button */
         }
+
+        #dateTime {
+            font-size: 20px; /* Increase the font size */
+            color: #007BFF; /* Change the text color to blue */
+        }
+
+        #clockIcon {
+            margin-right: 5px; /* Add some space between the clock icon and the date and time */
+        }
     </style>
 </head>
 <body>
 <!-- Add the clear button at the top of the body -->
-    <form action="{{ url_for('clear') }}" method="POST" class="clear-button">
-        <input type="submit" value="Clear Uploads">
-    </form>
+<form action="{{ url_for('clear') }}" method="POST" class="clear-button">
+    <input type="submit" value="Clear Uploads">
+</form>
+
 <h1>Upload PDFs for Comparison</h1>
 <form enctype="multipart/form-data" method="POST">
     {{ form.hidden_tag() }}
@@ -91,6 +101,7 @@
     <p>
         Comparing 2 PDF files will highlight the differences between them.
     </p>
+    <p id="dateTime"><span id="clockIcon">🕒</span></p>
     <p>{{ form.submit(id='submit') }}</p>
 </form>
 
@@ -125,6 +136,15 @@
         checkFiles();
         updateFileNames();
     });
+
+    function updateDateTime() {
+        const dateTimeElement = document.getElementById('dateTime');
+        const now = new Date();
+        dateTimeElement.textContent = "🕒 " + now.toLocaleString();
+    }
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
 </script>
 <footer style="text-align: center; padding: 20px 0; background-color: #f0f0f0; margin-top: 20px;">
     <p>&copy; 2023 PDF Compare. All rights reserved.</p>
