@@ -65,7 +65,14 @@ def compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path):
     for page_num in range(len(doc1)):
         img1 = pdf_page_to_image(pdf_path1, page_num)
         img2 = pdf_page_to_image(pdf_path2, page_num)
-        img1_with_differences, img2_with_differences = find_and_draw_differences(img1, img2, (0, 255, 0), (0, 0, 255))  # Green rectangles on PDF1, Red rectangles on PDF2
+
+        # (0,255,0) or (0, 700, 0) is green, (0,0,255) is red
+        # (0,0,255) is red
+        # (210, 0, 0) is blue
+        pdf1_color = (220, 0, 0)  # Green rectangles on PDF1
+        pdf2_color = (0, 0, 255)  # Red rectangles on PDF2
+
+        img1_with_differences, img2_with_differences = find_and_draw_differences(img1, img2, pdf1_color, pdf2_color)
         combined_img = combine_images_horizontally(img1_with_differences, img2_with_differences)
 
         # Convert the combined image to a PDF page
@@ -81,6 +88,6 @@ def compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path):
 pdf_path1 = "pdffiles/source/pdf_uat_20240331175323.pdf"
 pdf_path2 = "pdffiles/target/pdf_prod_20240331175323.pdf"
 
-output_pdf_path = 'output_highlighted_difference_06_09.pdf'
+output_pdf_path = 'output_highlighted_difference_06_10.pdf'
 
 compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path)
