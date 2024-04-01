@@ -16,8 +16,8 @@ def pdf_page_to_image(pdf_path, page_number, resolution=300):
     return img
 
 
-def find_and_draw_differences(img1, img2):
-    """Find differences between two images and draw red rectangles around each distinct change in the second image."""
+def find_and_draw_differences(img1, img2, color1, color2):
+    """Find differences between two images and draw rectangles around each distinct change."""
     # Convert to grayscale and find differences
     gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
@@ -33,9 +33,10 @@ def find_and_draw_differences(img1, img2):
     # Draw a rectangle around each distinct contour
     for contour in contours:
         x, y, w, h = cv2.boundingRect(contour)
-        cv2.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+        cv2.rectangle(img1, (x, y), (x + w, y + h), color1, 2)
+        cv2.rectangle(img2, (x, y), (x + w, y + h), color2, 2)
 
-    return img2
+    return img1, img2
 
 
 def combine_images_horizontally(img1, img2):
@@ -51,7 +52,7 @@ def combine_images_horizontally(img1, img2):
 
 
 def compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path):
-    """Compare PDFs, highlight differences on PDF2, and combine PDF1 and PDF2 pages side by side."""
+    """Compare PDFs, highlight differences on PDF1 and PDF2, and combine PDF1 and PDF2 pages side by side."""
     doc1 = fitz.open(pdf_path1)
     doc2 = fitz.open(pdf_path2)
 
@@ -64,8 +65,8 @@ def compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path):
     for page_num in range(len(doc1)):
         img1 = pdf_page_to_image(pdf_path1, page_num)
         img2 = pdf_page_to_image(pdf_path2, page_num)
-        img2_with_differences = find_and_draw_differences(img1, img2)
-        combined_img = combine_images_horizontally(img1, img2_with_differences)
+        img1_with_differences, img2_with_differences = find_and_draw_differences(img1, img2, (0, 255, 0), (0, 0, 255))  # Green rectangles on PDF1, Red rectangles on PDF2
+        combined_img = combine_images_horizontally(img1_with_differences, img2_with_differences)
 
         # Convert the combined image to a PDF page
         combined_page = output_pdf.new_page(width=combined_img.shape[1], height=combined_img.shape[0])
@@ -80,6 +81,6 @@ def compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path):
 pdf_path1 = "pdffiles/source/pdf_uat_20240331175323.pdf"
 pdf_path2 = "pdffiles/target/pdf_prod_20240331175323.pdf"
 
-output_pdf_path = 'output_highlighted_difference_06_07.pdf'
+output_pdf_path = 'output_highlighted_difference_06_09.pdf'
 
 compare_pdfs_highlight_and_combine(pdf_path1, pdf_path2, output_pdf_path)

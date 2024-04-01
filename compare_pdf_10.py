@@ -138,5 +138,10 @@ def clear():
     return redirect(url_for("upload"))
 
 
+@app.route('/download/<path:filename>')
+def download(filename):
+    return send_file(f'static/{filename}', as_attachment=True)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
