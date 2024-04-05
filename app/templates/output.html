@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PDF Compare Output</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<h1>Comparison Result: {{ pdf1 }} vs {{ pdf2 }}</h1>
+<embed height="600px" src="{{ url_for('static', filename=pdf_path) }}" type="application/pdf" width="100%"/>
+<button class="back-button" onclick="goBack()">Go Back</button>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #368727;
+    height: 54px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+}
+
+form {
+    max-width: 600px; /* Increase the form width */
+    margin: 0 auto;
+    padding: 30px; /* Increase the padding */
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Add border radius */
+}
+
+form p {
+    margin-bottom: 20px;
+    font-size: 18px; /* Increase the font size */
+}
+
+form input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px; /* Add padding */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Add border radius */
+}
+
+form input[type="submit"] {
+    background-color: #b1d585;
+    color: #121010;
+    padding: 15px 30px; /* Increase the padding */
+    border: none;
+    cursor: pointer;
+    font-size: 18px; /* Increase the font size */
+    border-radius: 5px; /* Add border radius */
+}
+
+form input[type="submit"]:hover {
+    background-color: #57b300;
+}
+
+
+#pdf1Name, #pdf2Name {
+    font-weight: bold; /* Make the text bold */
+    color: #007BFF; /* Change the text color */
+    background-color: #f0f0f0; /* Add a background color */
+    padding: 10px; /* Add some padding */
+    margin-bottom: 20px; /* Add some bottom margin */
+}
+
+/* Add new styles for the clear button */
+.clear-button {
+    position: absolute; /* Position the button absolutely */
+    top: 20px; /* Position it 20px from the top of the page */
+    right: 20px; /* Position it 20px from the right of the page */
+    padding: 10px 20px; /* Add some padding */
+    border: none; /* Remove the border */
+    cursor: pointer; /* Change the cursor to a pointer when hovering over the button */
+}
+
+.delete-static-output {
+    position: absolute; /* Position the button absolutely */
+    bottom: 20px; /* Position it 20px from the top of the page */
+    right: 20px; /* Position it 20px from the right of the page */
+    padding: 10px 20px; /* Add some padding */
+    border: none; /* Remove the border */
+    cursor: pointer; /* Change the cursor to a pointer when hovering over the button */
+}
+
+.clear-button:hover {
+    background-color: darkred; /* Change the background color to dark red when hovering over the button */
+}
+
+#dateTime {
+    font-size: 20px; /* Increase the font size */
+    color: #007BFF; /* Change the text color to blue */
+}
+
+#clockIcon {
+    margin-right: 5px; /* Add some space between the clock icon and the date and time */
+}
+
+.back-button {
+    background-color: #4CAF50; /* Green */
+    border: 2px solid #4CAF50; /* Add a border */
+    border-radius: 5px; /* Round the corners */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: Arial, sans-serif; /* Change the font */
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Add a transition effect */
+}
+
+.back-button:hover {
+    background-color: #45a049;
+    border-color: #45a049; /* Change the border color on hover */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+button.file-selected {
+    background-color: #ff0000; /* Change the background color to red */
+    color: #ffffff; /* Change the text color to white */
+    right: 20px; /* Position it 20px from the right of the page */
+}

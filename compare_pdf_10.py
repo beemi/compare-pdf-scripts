@@ -1,6 +1,5 @@
 import datetime
 import os
-
 import shutil
 
 import cv2
@@ -101,7 +100,7 @@ def upload():
             return f'Error comparing PDFs: {str(e)}'
 
         # Calculate the relative path to the PDF file from the static folder
-        static_pdf_path = os.path.join('static', 'output_' + pdf_time_stamp + '.pdf')
+        static_pdf_path = os.path.join('app/static', 'output_' + pdf_time_stamp + '.pdf')
         shutil.move(output_pdf_path, static_pdf_path)
 
         # Calculate the relative path to the PDF file from the static folder
@@ -140,7 +139,7 @@ def clear():
 
 @app.route('/download/<path:filename>')
 def download(filename):
-    return send_file(f'static/{filename}', as_attachment=True)
+    return send_file(f'app/static/{filename}', as_attachment=True)
 
 
 if __name__ == '__main__':
