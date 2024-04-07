@@ -9,9 +9,6 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    expose:
-      - "5000"
-      - "5001"
     ports:
       - "5001:5000"
     networks:
