@@ -1,16 +1,17 @@
 version: '3.8'
 
 services:
-  pdfapp:
+  pdfcompare:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: pdfcompare
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
     ports:
       - "5001:5000"
+      - "5002:8000"
+    security_opt:
+      - no-new-privileges:true
     networks:
       - monitoring
 

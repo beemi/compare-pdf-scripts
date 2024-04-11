@@ -2,6 +2,14 @@
 
 ```bash
 pip install --upgrade pip
+
+pip install gunicorn
+```
+
+#### ubuntu
+```bash
+sudo apt-get update
+sudo apt-get install gunicorn
 ```
 
 ```bash
@@ -25,6 +33,13 @@ docker run -it --rm pdf-compare
 ```bash
 docker run -it --rm -v $(pwd):/app pdf-compare
 ```
+
+### Docker compose run
+
+```bash
+docker-compose up
+```
+
 
 
 http://127.0.0.1:5001/

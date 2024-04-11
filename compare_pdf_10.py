@@ -16,7 +16,7 @@ from compare_pdf_09 import compare_pdfs_highlight_and_combine
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
-app.config['UPLOAD_FOLDER'] = 'uploader-folder'
+app.config['UPLOAD_FOLDER'] = 'uploads'
 
 
 class UploadForm(FlaskForm):
