@@ -3,7 +3,7 @@ import logging
 import os
 import shutil
 
-from flask import render_template, redirect, url_for, send_file
+from flask import render_template, redirect, url_for, send_file, make_response, jsonify
 from werkzeug.utils import secure_filename
 
 from app.forms import UploadForm
@@ -11,6 +11,7 @@ from app.pdf_utils import compare_pdfs_highlight_and_combine
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
+start_time = datetime.datetime.now()
 
 def init_app(app):
     @app.route('/', methods=['GET', 'POST'])
@@ -79,3 +80,20 @@ def init_app(app):
                 except Exception as e:
                     logging.error(f'Failed to delete {file_path}. Reason: {e}')
         return redirect(url_for("upload"))
+
+    # add health check endpoint with timestamp & version
+    @app.route('/health', methods=['GET'])
+    def health():
+        try:
+            uptime = datetime.datetime.now() - start_time
+            return make_response(
+                jsonify({
+                    'status': 'healthy',
+                    'timestamp': datetime.datetime.now().isoformat(),
+                    'version': '1.0.0',
+                    'uptime': str(uptime)
+                }),
+                200
+            )
+        except Exception as e:
+            return make_response(jsonify({'status': 'error', 'message': str(e)}), 500)
